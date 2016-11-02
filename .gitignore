@@ -1,0 +1,21 @@
+# Logs
+*.log
+npm-debug.log*
+
+# Dependencies
+node_modules
+yarn.lock
+
+# Coverage
+/coverage
+/.nyc_output
+
+# Build
+/lib
+
+# OS - OSX
+.DS_Store
+
+# OS - Windows
+Thumbs.db
+ehthumbs.db

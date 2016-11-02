@@ -1,0 +1,16 @@
+language: node_js
+sudo: false
+
+node_js:
+  - "6"
+
+install:
+  - npm install -g codecov
+  - npm run bootstrap
+
+script:
+  - npm run style
+  - npm run coverage
+
+after_success:
+  - codecov
