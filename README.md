@@ -34,7 +34,7 @@ app.get("/api/:foo/:bar", (req, res) => {
 module.exports = createAzureFunctionHandler(app);
 ```
 
-Make you you are binding `req` and `res` in your `function.json`:
+Make sure you are binding `req` and `res` in your `function.json`:
 
 ```json
 {
