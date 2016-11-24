@@ -25,8 +25,9 @@ function end(context, data, encoding) {
   // 1. Write head
   this.writeHead(this.statusCode); // Make jshttp/on-headers able to trigger
 
-  // 2. Write body
+  // 2. Return raw body to Azure Function runtime
   context.res.body = convertToBody(data, encoding);
+  context.res.isRaw = true;
   context.done();
 }
 

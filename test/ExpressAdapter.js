@@ -21,7 +21,14 @@ describe("ExpressAdapter", () => {
       bindings  : { req: { originalUrl: "http://foo.com/bar" } },
       done      : () => {
         listenerCalled.should.be.true();
-        context.res.body.should.equal("body");
+
+        // Response that will be sent to Azure Function runtime
+        context.res.should.eql({
+          body    : "body",
+          headers : undefined,
+          isRaw   : true,
+          status  : 200
+        });
         done();
       }
     };
@@ -46,7 +53,14 @@ describe("ExpressAdapter", () => {
       bindings  : { req: { originalUrl: "http://foo.com/bar" } },
       done      : () => {
         listenerCalled.should.be.true();
-        context.res.body.should.equal("body");
+
+        // Response that will be sent to Azure Function runtime
+        context.res.should.eql({
+          body    : "body",
+          headers : undefined,
+          isRaw   : true,
+          status  : 200
+        });
         done();
       }
     };
