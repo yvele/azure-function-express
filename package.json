@@ -36,6 +36,7 @@
     "clean:build": "rm -rf lib",
     "clean:npm": "rm -rf node_modules",
     "coverage": "rm -rf coverage .nyc_output && NODE_ENV=nyc npm run build && nyc mocha",
+    "publish": "npm run validate && npm run build && npm publish",
     "style": "eslint src/**",
     "test": "mocha",
     "validate": "npm run style && npm run coverage"
