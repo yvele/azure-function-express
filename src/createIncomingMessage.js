@@ -3,6 +3,28 @@ import EventEmitter from "events";
 
 const NOOP = () => {};
 
+function removePortFromAddress(address) {
+  return address
+    ? address.replace(/:[0-9]*$/, "")
+    : address;
+}
+
+/**
+ * Create a fake connection object
+ *
+ * @param {Object} context Azure context object for a single HTTP request.
+ * @returns {object} Connection object
+ */
+function createConnectionObject(context) {
+  const req = context.bindings.req;
+  const xForwardedFor = req.headers ? req.headers["x-forwarded-for"] : undefined;
+
+  return {
+    encrypted     : req.originalUrl && req.originalUrl.toLowerCase().startsWith("https"),
+    remoteAddress : removePortFromAddress(xForwardedFor)
+  };
+}
+
 /**
  * @private
  */
@@ -24,6 +46,7 @@ class IncomingMessage extends EventEmitter {
     this._readableState = { pipesCount: 0 }; // To make unpipe happy
     this.resume = NOOP;
     this.socket = { destroy: NOOP };
+    this.connection = createConnectionObject(context);
 
     // Extra content
     this.context = { log: context.log.bind(context) };
