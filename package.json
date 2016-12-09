@@ -86,10 +86,10 @@
     "babel-plugin-transform-export-extensions": "^6.8.0",
     "babel-preset-es2015-node6": "^0.4.0",
     "babel-register": "^6.18.0",
-    "eslint": "^3.10.2",
+    "eslint": "^3.11.1",
     "eslint-config-airbnb-base": "^10.0.1",
     "eslint-plugin-import": "^2.2.0",
-    "mocha": "^3.1.2",
+    "mocha": "^3.2.0",
     "nyc": "^8.4.0-candidate",
     "rewire": "^2.5.2",
     "should": "^11.1.1"
