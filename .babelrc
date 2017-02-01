@@ -1,0 +1,14 @@
+{
+  "presets": [
+    ["babel-preset-env", { "node": 6.5, "loose": true, "useBuiltIns": true }]
+  ],
+  "plugins": [
+    ["transform-export-extensions", { "loose": true }],
+    ["add-module-exports", { "loose": true }]
+  ],
+  "env": {
+    "nyc": {
+      "plugins": ["istanbul"]
+    }
+  }
+}

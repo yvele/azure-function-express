@@ -45,22 +45,6 @@
     "node": ">=6.5.0",
     "npm": ">=4.1.2"
   },
-  "babel": {
-    "presets": [
-      "es2015-node6"
-    ],
-    "plugins": [
-      "transform-export-extensions",
-      "add-module-exports"
-    ],
-    "env": {
-      "nyc": {
-        "plugins": [
-          "istanbul"
-        ]
-      }
-    }
-  },
   "nyc": {
     "reporter": [
       "text",
@@ -84,7 +68,7 @@
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-istanbul": "^3.1.2",
     "babel-plugin-transform-export-extensions": "^6.22.0",
-    "babel-preset-es2015-node6": "^0.4.0",
+    "babel-preset-env": "^1.1.8",
     "babel-register": "^6.22.0",
     "eslint": "^3.14.1",
     "eslint-config-airbnb-base": "^11.0.1",
