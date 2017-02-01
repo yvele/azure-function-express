@@ -33,7 +33,7 @@ function end(context, data, encoding) {
 
 /**
  * https://nodejs.org/api/http.html#http_response_writehead_statuscode_statusmessage_headers
- * Original implementation: https://github.com/nodejs/node/blob/master/lib/_http_server.js#L161
+ * Original implementation: https://github.com/nodejs/node/blob/v6.x/lib/_http_server.js#L160
  *
  * @param {Object} context Azure Function context
  * @param {number} statusCode
@@ -73,22 +73,55 @@ function writeHead(context, statusCode, statusMessage, headers) {
 }
 
 /**
+ * OutgoingMessage mock based on https://github.com/nodejs/node/blob/v6.x
+ *
+ * Note: This implementation is only meant to be working with Node.js v6.x
+ *
+ * @private
+ */
+class OutgoingMessage {
+
+  /**
+   * Original implementation: https://github.com/nodejs/node/blob/v6.x/lib/_http_outgoing.js#L48
+   */
+  constructor(context) {
+    this._headers = null;
+    this._headerNames = {};
+    this._removedHeader = {};
+    this._hasBody = true;
+
+    // Those methods cannot be prototyped because express explicitelly overrides __proto__
+    // See https://github.com/expressjs/express/blob/master/lib/middleware/init.js#L29
+    this.writeHead = writeHead.bind(this, context);
+    this.end = end.bind(this, context);
+  }
+
+  /**
+   * Original implementation: https://github.com/nodejs/node/blob/v6.x/lib/_http_outgoing.js#L349
+   *
+   * Note: Although express overrides all prototypes, this method still needs to be added because
+   *       express may call setHeader right before overriding prototype (to set "X-Powered-By")
+   *       See https://github.com/expressjs/express/blob/master/lib/middleware/init.js#L23
+   *
+   * @param {string} name
+   * @param {string} value
+   */
+  setHeader(name, value) {
+    if (!this._headers) {
+      this._headers = {};
+    }
+
+    const key = name.toLowerCase();
+    this._headers[key] = value;
+    this._headerNames[key] = name;
+  }
+
+}
+
+/**
  * @param {Object} context Azure Function context object (assigned to a single HTTP request).
  * @returns {Object} Wrapped response object
  */
 export default function createOutgoingMessage(context) {
-  // OutgoingMessage cannot be prototyped (class) because express explicitelly overrides __proto__
-  // See https://github.com/expressjs/express/blob/master/lib/middleware/init.js#L29
-
-  const res = {
-    _headers       : null,
-    _headerNames   : {},
-    _removedHeader : {},
-    _hasBody       : true
-  };
-
-  res.writeHead = writeHead.bind(res, context);
-  res.end = end.bind(res, context);
-
-  return res;
+  return new OutgoingMessage(context);
 }
