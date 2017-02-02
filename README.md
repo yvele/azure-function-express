@@ -52,8 +52,25 @@ Make sure you are binding `req` and `res` in your `function.json`:
 }
 ```
 
-You can have a single `function.json` that matches all HTTP routes with binding `"route": "{*segments}"`.
-And let Express handles routing.
+To allow Express handles all HTTP routes itself you may set a glob star route in a single root `function.json`:
+
+```json
+{
+  "bindings": [{
+    "authLevel" : "anonymous",
+    "type"      : "httpTrigger",
+    "direction" : "in",
+    "name"      : "req",
+    "route"     : "{*segments}"
+  }, {
+    "type"      : "http",
+    "direction" : "out",
+    "name"      : "res"
+  }]
+}
+```
+
+Note that `segments` is not used and could be anything. See [Azure Function documentation](https://github.com/Azure/azure-webjobs-sdk-script/wiki/Http-Functions).
 
 All examples [here](/examples/).
 
