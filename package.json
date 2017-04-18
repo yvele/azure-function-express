@@ -1,6 +1,6 @@
 {
   "name": "azure-function-express",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Allows Express usage with Azure Function",
   "keywords": [
     "azure function",
