@@ -1,6 +1,6 @@
-import createIncomingMessage from "../src/createIncomingMessage";
+import IncomingMessage from "../src/IncomingMessage";
 
-describe("createIncomingMessage", () => {
+describe("IncomingMessage", () => {
 
   it("Should work", () => {
 
@@ -14,11 +14,11 @@ describe("createIncomingMessage", () => {
       log : () => {}
     };
 
-    const incomingMessage = createIncomingMessage(context);
-    incomingMessage.resume();
-    incomingMessage.socket.destroy();
+    const req = new IncomingMessage(context);
+    req.resume();
+    req.socket.destroy();
 
-    expect(incomingMessage).toMatchObject({
+    expect(req).toMatchObject({
       url         : "https://foo.com/bar",
       connection  : {
         encrypted     : true,
@@ -38,11 +38,11 @@ describe("createIncomingMessage", () => {
       log : () => {}
     };
 
-    const incomingMessage = createIncomingMessage(context);
-    incomingMessage.resume();
-    incomingMessage.socket.destroy();
+    const req = new IncomingMessage(context);
+    req.resume();
+    req.socket.destroy();
 
-    expect(incomingMessage).toMatchObject({
+    expect(req).toMatchObject({
       url         : "http://foo.com/bar",
       connection  : {
         encrypted     : false,

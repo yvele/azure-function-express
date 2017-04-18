@@ -1,7 +1,29 @@
 import EventEmitter from "events";
-import createOutgoingMessage from "./createOutgoingMessage";
-import createIncomingMessage from "./createIncomingMessage";
-import assertContext from "./assertContext";
+import OutgoingMessage from "./OutgoingMessage";
+import IncomingMessage from "./IncomingMessage";
+
+/**
+ * @param {Object} context Azure Function native context object
+ * @throws {Error}
+ * @private
+ */
+function assertContext(context) {
+  if (!context) {
+    throw new Error("context is null or undefined");
+  }
+
+  if (!context.bindings) {
+    throw new Error("context.bindings is null or undefined");
+  }
+
+  if (!context.bindings.req) {
+    throw new Error("context.bindings.req is null or undefined");
+  }
+
+  if (!context.bindings.req.originalUrl) {
+    throw new Error("context.bindings.req.originalUrl is null or undefined");
+  }
+}
 
 /**
  * Express adapter allowing to handle Azure Function requests by wrapping in request events.
@@ -43,8 +65,8 @@ export default class ExpressAdapter extends EventEmitter {
     context.res = context.res || {};
 
     // 2. Wrapping
-    const req = createIncomingMessage(context);
-    const res = createOutgoingMessage(context);
+    const req = new IncomingMessage(context);
+    const res = new OutgoingMessage(context);
 
     // 3. Synchronously calls each of the listeners registered for the event
     this.emit("request", req, res);

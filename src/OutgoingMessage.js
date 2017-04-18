@@ -79,7 +79,7 @@ function writeHead(context, statusCode, statusMessage, headers) {
  *
  * @private
  */
-class OutgoingMessage {
+export default class OutgoingMessage {
 
   /**
    * Original implementation: https://github.com/nodejs/node/blob/v6.x/lib/_http_outgoing.js#L48
@@ -116,12 +116,4 @@ class OutgoingMessage {
     this._headerNames[key] = name;
   }
 
-}
-
-/**
- * @param {Object} context Azure Function context object (assigned to a single HTTP request).
- * @returns {Object} Wrapped response object
- */
-export default function createOutgoingMessage(context) {
-  return new OutgoingMessage(context);
 }

@@ -26,13 +26,16 @@ function createConnectionObject(context) {
 }
 
 /**
+ * Request object wrapper
+ *
  * @private
  */
-class IncomingMessage extends EventEmitter {
+export default class IncomingMessage extends EventEmitter {
 
   /**
+   * Note: IncomingMessage assumes that all HTTP in is binded to "req" property.
+   *
    * @param {Object} context Azure context object for a single HTTP request.
-   * IncomingMessage assumes that all HTTP in is binded to "req" property.
    */
   constructor(context) {
     super();
@@ -48,16 +51,8 @@ class IncomingMessage extends EventEmitter {
     this.socket = { destroy: NOOP };
     this.connection = createConnectionObject(context);
 
-    // Extra content
+    // Add access to log via context.log
     this.context = { log: context.log.bind(context) };
   }
 
-}
-
-/**
- * @param {Object} context Azure Function context object (assigned to a single HTTP request).
- * @returns {Object} Wrapped request object
- */
-export default function createIncomingMessage(context) {
-  return new IncomingMessage(context);
 }
