@@ -1,2 +1,4 @@
+import createAzureFunctionHandler from "./createAzureFunctionHandler";
+
 export ExpressAdapter from "./ExpressAdapter";
-export createAzureFunctionHandler from "./createAzureFunctionHandler";
+export { createAzureFunctionHandler, createAzureFunctionHandler as createHandler };

@@ -18,7 +18,7 @@ Connect your Express application to an [Azure Function handler](https://github.c
 In your `index.js`:
 
 ```js
-const createAzureFunctionHandler = require("azure-function-express").createAzureFunctionHandler;
+const createHandler = require("azure-function-express").createHandler;
 const express = require("express");
 
 // Create express app as usual
@@ -31,7 +31,7 @@ app.get("/api/:foo/:bar", (req, res) => {
 });
 
 // Binds the express app to an Azure Function handler
-module.exports = createAzureFunctionHandler(app);
+module.exports = createHandler(app);
 ```
 
 Make sure you are binding `req` and `res` in your `function.json`:
