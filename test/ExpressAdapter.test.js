@@ -1,5 +1,4 @@
-import should from "should";
-import { ExpressAdapter } from "../lib";
+import { ExpressAdapter } from "../src";
 
 const NOOP = () => {};
 
@@ -11,7 +10,7 @@ describe("ExpressAdapter", () => {
 
     const adapter = new ExpressAdapter((req, res) => {
       listenerCalled = true;
-      req.url.should.equal("http://foo.com/bar");
+      expect(req.url).toBe("http://foo.com/bar");
       res.statusCode = 200;
       res.end("body", "utf8");
     });
@@ -20,10 +19,10 @@ describe("ExpressAdapter", () => {
       log       : NOOP,
       bindings  : { req: { originalUrl: "http://foo.com/bar" } },
       done      : () => {
-        listenerCalled.should.be.true();
+        expect(listenerCalled).toBe(true);
 
         // Response that will be sent to Azure Function runtime
-        context.res.should.eql({
+        expect(context.res).toEqual({
           body    : "body",
           headers : undefined,
           isRaw   : true,
@@ -43,7 +42,7 @@ describe("ExpressAdapter", () => {
 
     const adapter = new ExpressAdapter((req, res) => {
       listenerCalled = true;
-      req.url.should.equal("http://foo.com/bar");
+      expect(req.url).toBe("http://foo.com/bar");
       res.statusCode = 200;
       res.end(Buffer.from("body", "utf8"), "utf8");
     });
@@ -52,10 +51,10 @@ describe("ExpressAdapter", () => {
       log       : NOOP,
       bindings  : { req: { originalUrl: "http://foo.com/bar" } },
       done      : () => {
-        listenerCalled.should.be.true();
+        expect(listenerCalled).toBe(true);
 
         // Response that will be sent to Azure Function runtime
-        context.res.should.eql({
+        expect(context.res).toEqual({
           body    : "body",
           headers : undefined,
           isRaw   : true,
@@ -73,30 +72,30 @@ describe("ExpressAdapter", () => {
 
     it("Should throws with no context", () => {
       const adapter = new ExpressAdapter();
-      should.throws(() => {
+      expect(() => {
         adapter.handleAzureFunctionRequest();
-      }, /^Error: context is null or undefined/);
+      }).toThrowError(/^context is null or undefined/);
     });
 
     it("Should throws with a context with no bindings", () => {
       const adapter = new ExpressAdapter();
-      should.throws(() => {
+      expect(() => {
         adapter.handleAzureFunctionRequest({});
-      }, /^Error: context.bindings is null or undefined/);
+      }).toThrowError(/^context.bindings is null or undefined/);
     });
 
     it("Should throws with a context with no req binding", () => {
       const adapter = new ExpressAdapter();
-      should.throws(() => {
+      expect(() => {
         adapter.handleAzureFunctionRequest({ bindings: {} });
-      }, /^Error: context.bindings.req is null or undefined/);
+      }).toThrowError(/^context.bindings.req is null or undefined/);
     });
 
     it("Should throws with a context with a req binding having no originalUrl", () => {
       const adapter = new ExpressAdapter();
-      should.throws(() => {
+      expect(() => {
         adapter.handleAzureFunctionRequest({ bindings: { req: {} } });
-      }, /^Error: context.bindings.req.originalUrl is null or undefined/);
+      }).toThrowError(/^context.bindings.req.originalUrl is null or undefined/);
     });
 
   });

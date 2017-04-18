@@ -38,29 +38,12 @@
     "coverage": "rm -rf coverage .nyc_output && NODE_ENV=nyc npm run build && nyc mocha",
     "publish": "npm run validate && npm run build && npm publish",
     "style": "eslint src/**",
-    "test": "mocha",
+    "test": "jest",
     "validate": "npm run style && npm run coverage"
   },
   "engines": {
     "node": ">=6.5.0 <7",
     "npm": ">=4.1.2"
-  },
-  "nyc": {
-    "reporter": [
-      "text",
-      "text-summary",
-      "lcov",
-      "html"
-    ],
-    "include": [
-      "src/**/*.js"
-    ],
-    "require": [
-      "babel-register"
-    ],
-    "sourceMap": false,
-    "instrument": false,
-    "all": true
   },
   "devDependencies": {
     "babel-cli": "^6.22.2",
@@ -74,9 +57,6 @@
     "eslint-config-airbnb-base": "^11.0.1",
     "eslint-plugin-import": "^2.2.0",
     "express": "^4.14.1",
-    "mocha": "^3.2.0",
-    "nyc": "^10.1.2",
-    "rewire": "^2.5.2",
-    "should": "^11.2.0"
+    "jest": "^19.0.2"
   }
 }
