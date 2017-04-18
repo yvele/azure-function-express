@@ -74,6 +74,17 @@ Note that `segments` is not used and could be anything. See [Azure Function docu
 
 All examples [here](/examples/).
 
+## Log via context
+
+The [log function](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-node#writing-trace-output-to-the-console) is the only [context](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-node#context-object) function made available. You can access through `req.context.log`:
+
+```js
+app.get("/api/hello-world", (req, res) => {
+  req.context.log({ hello: "world" });
+  ...
+});
+```
+
 ## License
 
 [Apache 2.0](LICENSE) © Yves Merlicco
