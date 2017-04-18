@@ -11,7 +11,7 @@
 
 ## Description
 
-Connect your Express application to an [Azure Function handler](https://github.com/Azure/azure-webjobs-sdk-script/wiki/Http-Functions), and make seamless usage of [all middlewares](http://expressjs.com/en/guide/using-middleware.html) you are already familiar with.
+[Connect](https://github.com/senchalabs/connect) your [Express](https://expressjs.com) application to an [Azure Function handler](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-node), and make seamless usage of [all middlewares](http://expressjs.com/en/guide/using-middleware.html) you are already familiar with.
 
 ## Usage
 
