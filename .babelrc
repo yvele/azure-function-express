@@ -5,10 +5,5 @@
   "plugins": [
     ["transform-export-extensions", { "loose": true }],
     ["add-module-exports", { "loose": true }]
-  ],
-  "env": {
-    "nyc": {
-      "plugins": ["istanbul"]
-    }
-  }
+  ]
 }
