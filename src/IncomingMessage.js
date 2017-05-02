@@ -51,8 +51,11 @@ export default class IncomingMessage extends EventEmitter {
     this.socket = { destroy: NOOP };
     this.connection = createConnectionObject(context);
 
-    // Add access to log via context.log
-    this.context = { log: context.log.bind(context) };
+    // Add access specific objects via req.context
+    this.context = {
+      log           : context.log.bind(context),
+      invocationId  : context.invocationId
+    };
   }
 
 }
