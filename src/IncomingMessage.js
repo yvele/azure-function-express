@@ -54,7 +54,8 @@ export default class IncomingMessage extends EventEmitter {
     // Add access specific objects via req.context
     this.context = {
       log           : context.log.bind(context),
-      invocationId  : context.invocationId
+      invocationId  : context.invocationId,
+      bindings      : context.bindings
     };
   }
 
