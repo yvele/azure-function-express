@@ -16,7 +16,7 @@ function removePortFromAddress(address) {
  * @returns {object} Connection object
  */
 function createConnectionObject(context) {
-  const req = context.bindings.req;
+  const { req } = context.bindings;
   const xForwardedFor = req.headers ? req.headers["x-forwarded-for"] : undefined;
 
   return {
