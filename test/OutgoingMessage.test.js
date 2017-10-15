@@ -46,6 +46,28 @@ describe("OutgoingMessage", () => {
       expect(context.res.headers).toEqual({ foo: "bar", previous: "previous" });
     });
 
+    it("Should work with a status message", () => {
+      const context = { res: {} };
+      const res = new OutgoingMessage(context);
+
+      res.writeHead(200, "baz", { foo: "bar" });
+
+      expect(res.statusMessage).toBe("baz");
+      expect(context.res.status).toBe(200);
+      expect(context.res.headers).toEqual({ foo: "bar" });
+    });
+
+    it("Should work with a headers as second parameter if no status message is given", () => {
+      const context = { res: {} };
+      const res = new OutgoingMessage(context);
+
+      res.writeHead(200, { foo: "bar" });
+
+      expect(res.statusMessage).toBe("OK");
+      expect(context.res.status).toBe(200);
+      expect(context.res.headers).toEqual({ foo: "bar" });
+    });
+
   });
 
 });

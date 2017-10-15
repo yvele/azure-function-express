@@ -49,9 +49,16 @@ function writeHead(context, statusCode, statusMessage, headers) {
   }
 
   // 2. Status message
-  this.statusMessage = statusMessage || statusCodes[statusCode] || "unknown";
+  if (typeof statusMessage === "string") {
+    this.statusMessage = statusMessage;
+  } else {
+    this.statusMessage = statusCodes[statusCode] || "unknown";
+  }
 
   // 3. Headers
+  if (typeof statusMessage === "object" && typeof headers === "undefined") {
+    headers = statusMessage; // eslint-disable-line no-param-reassign
+  }
   if (this._headers) {
     // Slow-case: when progressive API and header fields are passed.
     if (headers) {
