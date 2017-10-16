@@ -4,6 +4,7 @@
   ],
   "plugins": [
     ["transform-export-extensions", { "loose": true }],
+    ["transform-object-rest-spread", { "loose": true }],
     ["add-module-exports", { "loose": true }]
   ]
 }
