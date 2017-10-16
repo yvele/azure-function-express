@@ -42,7 +42,7 @@
     "validate": "npm run style && npm run coverage"
   },
   "engines": {
-    "node": ">=6.5.0 <7",
+    "node": ">=6.11.2 <7",
     "npm": ">=3"
   },
   "devDependencies": {

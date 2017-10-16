@@ -5,7 +5,7 @@
 > Allows Express usage with Azure Function
 
 [![npm version](https://img.shields.io/npm/v/azure-function-express.svg)](https://www.npmjs.com/package/azure-function-express)
-[![Node](https://img.shields.io/badge/node-v6.5.0-blue.svg)](https://docs.microsoft.com/en-us/azure/azure-functions/functions-reference-node#node-version-and-package-management)
+[![Node](https://img.shields.io/badge/node-v6.11.2-blue.svg)](https://github.com/Azure/azure-webjobs-sdk-script/issues/2036#issuecomment-336942961)
 [![Travis Status](https://img.shields.io/travis/yvele/azure-function-express/master.svg?label=travis)](https://travis-ci.org/yvele/azure-function-express)
 [![Coverage Status](https://img.shields.io/codecov/c/github/yvele/azure-function-express/master.svg)](https://codecov.io/github/yvele/azure-function-express)
 [![MIT licensed](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](LICENSE)
