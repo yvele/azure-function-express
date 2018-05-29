@@ -1,3 +1,7 @@
+<a href="https://hapticmedia.fr/en/">
+  <img align="right" alt="Supported by Hapticmedia" src="docs/media/hapticmedia-support.svg" title="Supported by Hapticmedia" height="60"/>
+</a>
+
 # azure-function-express
 
 <a href="https://azure.microsoft.com/en-us/services/functions/">
