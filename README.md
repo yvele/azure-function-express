@@ -1,6 +1,8 @@
 # azure-function-express
 
-<img align="right" alt="Function logo" src="docs/media/function.png" title="Function" width="150"/>
+<a href="https://azure.microsoft.com/en-us/services/functions/">
+  <img align="right" alt="Function logo" src="docs/media/function.png" title="Function" width="150"/>
+</a>
 
 > Allows Express usage with Azure Function
 
