@@ -1,5 +1,5 @@
 /* eslint-disable no-magic-numbers, no-underscore-dangle */
-import { OutgoingMessage as NativeOutgoingMessage } from http;
+import { OutgoingMessage as NativeOutgoingMessage } from "http";
 import statusCodes from "./statusCodes";
 
 /**
@@ -93,6 +93,7 @@ export default class OutgoingMessage extends NativeOutgoingMessage {
    * Original implementation: https://github.com/nodejs/node/blob/v6.x/lib/_http_outgoing.js#L48
    */
   constructor(context) {
+    super();
     this._headers = null;
     this._headerNames = {};
     this._removedHeader = {};
@@ -103,4 +104,5 @@ export default class OutgoingMessage extends NativeOutgoingMessage {
     this.writeHead = writeHead.bind(this, context);
     this.end = end.bind(this, context);
   }
+
 }
