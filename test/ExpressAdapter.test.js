@@ -24,7 +24,7 @@ describe("ExpressAdapter", () => {
         // Response that will be sent to Azure Function runtime
         expect(context.res).toEqual({
           body    : "body",
-          headers : undefined,
+          headers : {},
           isRaw   : true,
           status  : 200
         });
@@ -56,7 +56,7 @@ describe("ExpressAdapter", () => {
         // Response that will be sent to Azure Function runtime
         expect(context.res).toEqual({
           body    : "body",
-          headers : undefined,
+          headers : {},
           isRaw   : true,
           status  : 200
         });

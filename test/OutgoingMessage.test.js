@@ -36,7 +36,6 @@ describe("OutgoingMessage", () => {
       const context = { res: {} };
       const res = new OutgoingMessage(context);
       res._headers = { previous: "previous" };
-      res.setHeader = (key, value) => { res._headers[key] = value };
       res._renderHeaders = () => res._headers;
 
       res.writeHead(200, null, { foo: "bar" });
