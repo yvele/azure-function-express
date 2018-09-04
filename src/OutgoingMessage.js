@@ -77,7 +77,9 @@ function writeHead(context, statusCode, statusMessage, headers) {
 
   // 4. Sets everything
   context.res.status = statusCode;
-  context.res.headers = headers;
+  // In order to uniformize node 6 behaviour with node 8 and 10,
+  // we want to never have undefined headers, but instead empty object
+  context.res.headers = headers || {};
 }
 
 /**
