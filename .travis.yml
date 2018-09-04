@@ -7,7 +7,7 @@ node_js:
   - "10"
 
 before_install:
-  - if [[ `npm -v` != 5* ]]; then npm i -g npm@5; fi
+  - if [[ `npm -v` != 6* ]]; then npm i -g npm@6; fi
 
 install:
   - npm install -g codecov
