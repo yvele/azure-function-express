@@ -1,4 +1,5 @@
 /* eslint-disable no-magic-numbers, no-underscore-dangle */
+import { OutgoingMessage as NativeOutgoingMessage } from "http";
 import statusCodes from "./statusCodes";
 
 /**
@@ -86,12 +87,13 @@ function writeHead(context, statusCode, statusMessage, headers) {
  *
  * @private
  */
-export default class OutgoingMessage {
+export default class OutgoingMessage extends NativeOutgoingMessage {
 
   /**
    * Original implementation: https://github.com/nodejs/node/blob/v6.x/lib/_http_outgoing.js#L48
    */
   constructor(context) {
+    super();
     this._headers = null;
     this._headerNames = {};
     this._removedHeader = {};
@@ -101,26 +103,6 @@ export default class OutgoingMessage {
     // See https://github.com/expressjs/express/blob/master/lib/middleware/init.js#L29
     this.writeHead = writeHead.bind(this, context);
     this.end = end.bind(this, context);
-  }
-
-  /**
-   * Original implementation: https://github.com/nodejs/node/blob/v6.x/lib/_http_outgoing.js#L349
-   *
-   * Note: Although express overrides all prototypes, this method still needs to be added because
-   *       express may call setHeader right before overriding prototype (to set "X-Powered-By")
-   *       See https://github.com/expressjs/express/blob/master/lib/middleware/init.js#L23
-   *
-   * @param {string} name
-   * @param {string} value
-   */
-  setHeader(name, value) {
-    if (!this._headers) {
-      this._headers = {};
-    }
-
-    const key = name.toLowerCase();
-    this._headers[key] = value;
-    this._headerNames[key] = name;
   }
 
 }
