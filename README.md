@@ -35,7 +35,7 @@ const express = require("express");
 
 // Create express app as usual
 const app = express();
-app.get("/api/:foo/:bar", (req, res) => {
+app.get("/api/hello/:foo/:bar", (req, res) => {
   res.json({
     foo  : req.params.foo,
     bar  : req.params.bar
@@ -55,7 +55,7 @@ Make sure you are binding `req` and `res` in your `function.json`:
     "type"      : "httpTrigger",
     "direction" : "in",
     "name"      : "req",
-    "route"     : "foo/{bar}/{id}"
+    "route"     : "hello/{foo}/{bar}"
   }, {
     "type"      : "http",
     "direction" : "out",
