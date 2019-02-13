@@ -20,8 +20,8 @@ function createConnectionObject(context) {
   const xForwardedFor = req.headers ? req.headers["x-forwarded-for"] : undefined;
 
   return {
-    encrypted: req.originalUrl && req.originalUrl.toLowerCase().startsWith("https"),
-    remoteAddress: removePortFromAddress(xForwardedFor)
+    encrypted : req.originalUrl && req.originalUrl.toLowerCase().startsWith("https"),
+    remoteAddress : removePortFromAddress(xForwardedFor)
   };
 }
 
