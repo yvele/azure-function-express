@@ -72,7 +72,6 @@ export default class IncomingMessage extends EventEmitter {
     this.connection = createConnectionObject(context);
 
     this.context = sanitizeContext(context); // Specific to Azure Function
-    //this.context = Object.assign(context)
   }
 
 }
