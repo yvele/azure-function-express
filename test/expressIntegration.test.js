@@ -18,18 +18,17 @@ describe("express integration", () => {
 
     // 3. Mock Azure Function context
     var context = {
-      bindings  : { req: { method: "GET", originalUrl: "https://lol.com/api/foo/bar" } },
-      log       : () => { throw new Error("Log should not be called"); },
-      done : (error) => {
+      bindings: { req: { method: "GET", originalUrl: "https://lol.com/api/foo/bar" } },
+      done: (error) => {
         expect(error).toBeUndefined();
         expect(context.res.status).toBe(200);
         expect(context.res.body).toBe('{"foo":"foo","bar":"bar"}');
         expect(context.res.headers).toEqual({
-          "X-Powered-By"    : "Express",
-          "Cache-Control"   : "max-age=600",
-          "Content-Type"    : "application/json; charset=utf-8",
-          "Content-Length"  : "25",
-          ETag              : 'W/"19-0CKEGOfZ5AYCM4LPaa4gzWL6olU"'
+          "X-Powered-By": "Express",
+          "Cache-Control": "max-age=600",
+          "Content-Type": "application/json; charset=utf-8",
+          "Content-Length": "25",
+          ETag: 'W/"19-0CKEGOfZ5AYCM4LPaa4gzWL6olU"'
         });
 
         done();
@@ -55,16 +54,15 @@ describe("express integration", () => {
 
     // 3. Mock Azure Function context
     var context = {
-      bindings  : { req: { method: "GET", originalUrl: "https://lol.com/api/foo/bar" } },
-      log       : () => { throw new Error("Log should not be called"); },
-      done : (error) => {
+      bindings: { req: { method: "GET", originalUrl: "https://lol.com/api/foo/bar" } },
+      done: (error) => {
         expect(error).toBeUndefined();
         expect(context.res.status).toBe(200);
         expect(context.res.body).toBe('{"foo":"foo","bar":"bar"}');
         expect(context.res.headers).toEqual({
-          "Content-Type"    : "application/json; charset=utf-8",
-          "Content-Length"  : "25",
-          ETag              : 'W/"19-0CKEGOfZ5AYCM4LPaa4gzWL6olU"'
+          "Content-Type": "application/json; charset=utf-8",
+          "Content-Length": "25",
+          ETag: 'W/"19-0CKEGOfZ5AYCM4LPaa4gzWL6olU"'
         });
 
         done();
