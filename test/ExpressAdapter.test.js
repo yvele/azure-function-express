@@ -14,16 +14,16 @@ describe("ExpressAdapter", () => {
     });
 
     const context = {
-      bindings: { req: { originalUrl: "http://foo.com/bar" } },
-      done: () => {
+      bindings  : { req: { originalUrl: "http://foo.com/bar" } },
+      done      : () => {
         expect(listenerCalled).toBe(true);
 
         // Response that will be sent to Azure Function runtime
         expect(context.res).toEqual({
-          body: "body",
-          headers: {},
-          isRaw: true,
-          status: 200
+          body    : "body",
+          headers : {},
+          isRaw   : true,
+          status  : 200
         });
         done();
       }
@@ -45,16 +45,16 @@ describe("ExpressAdapter", () => {
     });
 
     const context = {
-      bindings: { req: { originalUrl: "http://foo.com/bar" } },
-      done: () => {
+      bindings  : { req: { originalUrl: "http://foo.com/bar" } },
+      done      : () => {
         expect(listenerCalled).toBe(true);
 
         // Response that will be sent to Azure Function runtime
         expect(context.res).toEqual({
-          body: "body",
-          headers: {},
-          isRaw: true,
-          status: 200
+          body    : "body",
+          headers : {},
+          isRaw   : true,
+          status  : 200
         });
         done();
       }
