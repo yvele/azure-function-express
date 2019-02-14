@@ -19,7 +19,6 @@ describe("express integration", () => {
     // 3. Mock Azure Function context
     var context = {
       bindings  : { req: { method: "GET", originalUrl: "https://lol.com/api/foo/bar" } },
-      log       : () => { throw new Error("Log should not be called"); },
       done : (error) => {
         expect(error).toBeUndefined();
         expect(context.res.status).toBe(200);
