@@ -11,7 +11,7 @@ function convertToBody(body, encoding) {
   // This may be removed on Azure Function native support for Buffer
   // https://github.com/Azure/azure-webjobs-sdk-script/issues/814
   // https://github.com/Azure/azure-webjobs-sdk-script/pull/781
-  return Buffer.isBuffer(body)
+  return Buffer.isBuffer(body) && encoding !== "binary"
     ? body.toString(encoding)
     : body;
 }
