@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import EventEmitter from "events";
+import { Readable } from "stream";
 
 const NOOP = () => {};
 
@@ -53,7 +53,7 @@ function sanitizeContext(context) {
  *
  * @private
  */
-export default class IncomingMessage extends EventEmitter {
+export default class IncomingMessage extends Readable {
 
   /**
    * Note: IncomingMessage assumes that all HTTP in is binded to "req" property
@@ -65,11 +65,12 @@ export default class IncomingMessage extends EventEmitter {
 
     Object.assign(this, context.bindings.req); // Inherit
 
+    this.push(context.bindings.req.rawBody); // Push the request body onto this stream
+    this.push(null); // Close the stream
+
     this.url = this.originalUrl;
     this.headers = this.headers || {}; // Should always have a headers object
 
-    this._readableState = { pipesCount: 0 }; // To make unpipe happy
-    this.resume = NOOP;
     this.socket = { destroy: NOOP };
     this.connection = createConnectionObject(context);
 
