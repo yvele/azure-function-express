@@ -82,7 +82,7 @@ describe("IncomingMessage", () => {
     expect(req.context.invocationId).toBe(context.invocationId);
     expect(req.context.bindingData).toBe(context.bindingData);
     expect(req.context.bindings).toBe(context.bindings);
-    expect(req.context.log).not.toBe(context.log);
+    expect(req.context.log).toBe(context.log);
     expect(req.context.log).toBeInstanceOf(Function);
     expect(req.context.done).toBeUndefined(); // We don't want to pass done
 

@@ -43,7 +43,7 @@
     "validate": "npm run style && npm run coverage"
   },
   "engines": {
-    "node": ">=6.11.2 <11",
+    "node": ">=6.11.2 <15",
     "npm": ">=6"
   },
   "devDependencies": {
@@ -57,10 +57,10 @@
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^9.0.0",
     "babel-plugin-add-module-exports": "^0.2.1",
-    "eslint": "^5.5.0",
+    "eslint": "^8.6.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "express": "^4.16.3",
-    "jest": "^23.5.0"
+    "jest": "^27.4.7"
   }
 }
