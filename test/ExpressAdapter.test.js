@@ -1,7 +1,5 @@
 import { ExpressAdapter } from "../src";
 
-const NOOP = () => {};
-
 describe("ExpressAdapter", () => {
 
   it("Should work", done => {
@@ -16,7 +14,6 @@ describe("ExpressAdapter", () => {
     });
 
     const context = {
-      log       : NOOP,
       bindings  : { req: { originalUrl: "http://foo.com/bar" } },
       done      : () => {
         expect(listenerCalled).toBe(true);
@@ -48,7 +45,6 @@ describe("ExpressAdapter", () => {
     });
 
     const context = {
-      log       : NOOP,
       bindings  : { req: { originalUrl: "http://foo.com/bar" } },
       done      : () => {
         expect(listenerCalled).toBe(true);

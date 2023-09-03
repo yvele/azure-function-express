@@ -37,8 +37,7 @@ function createConnectionObject(context) {
  */
 function sanitizeContext(context) {
   const sanitizedContext = {
-    ...context,
-    log : context.log.bind(context)
+    ...context
   };
 
   // We don't want the developper to mess up express flow
